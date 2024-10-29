@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ToDos</title>
+    <!-- Lien de TailWind-->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Lien du fichier CSS pour styler la page-->
+    <link rel="stylesheet" href="./assets/style.css">
+    
+</head>
+<body class="">
+    <!-- Le titre de la page-->
+    <h1 class="text-center mb-20 mt-20 text-4xl font-extrabold leading-none tracking-tight text-black md:text-5xl lg:text-6xl dark:text-white">My ToDos</h1>
+    
+    <!-- Section des Commandes-->
+    <section class="cmndsction mb-20">
+        <div class="w-4/12 ml-80">
+            <button type="button" class="px-5 py-3 text-base font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Nouvelle Tache +</button>
+        </div>
+
+        <div class="">
+            <div class="flex rounded-md border-2 border-purple-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
+                <input type="email" placeholder="Search Something..."
+                  class="w-full outline-none bg-white text-gray-600 text-sm px-4 py-3" />
+                <button type='button' class="flex items-center justify-center bg-[#6f42c1] px-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px" class="fill-white">
+                    <path
+                      d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+        </div>
+
+        <div class="w-4/12 ml-14">
+            <button type="button" class="px-5 py-3 text-base font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Ajout Multiple +</button>
+        </div>
+
+
+    </section>
+
+    <!-- Section des Taches-->
+    <section class="tchssction ">
+        <div class="w-4/6">
+            <div class="pl-10 border-b-2 pb-2 border-green-800">
+                <h1 class="flex items-center text-4xl font-semibold dark:text-white">To Do<span class="bg-green-100 text-green-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-800 ms-2 ml-4">1</span></h1>
+            </div>
+        </div>
+
+        <div class="w-4/6">
+            <div class="pl-10 border-b-2 pb-2 border-red-800">
+                <h1 class="flex items-center text-4xl font-semibold dark:text-white">Doing<span class="bg-red-100 text-red-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-800 ms-2 ml-4">0</span></h1>
+            </div>
+
+        </div>
+
+        <div class="w-4/6">
+            <div class="pl-10 border-b-2 pb-2 border-purple-800">
+                <h1 class="flex items-center text-4xl font-semibold dark:text-white">Done<span class="bg-purple-100 text-purple-800 text-xl font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-200 dark:text-purple-800 ms-2 ml-4">1</span></h1>
+            </div>
+
+        </div>
+
+    </section>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
