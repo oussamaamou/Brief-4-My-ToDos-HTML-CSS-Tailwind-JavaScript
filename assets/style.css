@@ -13,7 +13,8 @@
 .tchssction{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    place-items: center;
+    
+
 }
 
 /* La Partie de la section des Commandes*/
