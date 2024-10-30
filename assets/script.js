@@ -11,14 +11,15 @@ clsxajt.onclick = function(){
     ajtsction.style.display = "none";
 }
 
-const mdfbtn = document.getElementById("mdfbtn");
-const mdfsction = document.getElementById("mdfsection");
+const mdfbtns = document.querySelectorAll('#mdfbtn');
 const clsxmdf = document.getElementById("clsxmdf");
 
-mdfbtn.onclick = function(){
-    mdfsction.style.display = "block";
+mdfbtns.forEach(mdfbtn =>{
+    mdfbtn.onclick = function(){
+        ajtsction.style.display = "block";
 
-}
+    }
+});
 
 clsxmdf.onclick = function(){
     mdfsction.style.display = "none";

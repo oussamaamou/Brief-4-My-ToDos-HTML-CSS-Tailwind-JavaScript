@@ -12,8 +12,13 @@
 /* La Partie de la section des Taches*/
 .tchssction{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 9%;
 
+}
+
+.divctnr{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
 }
 
 /* La Partie de la section des Commandes*/
