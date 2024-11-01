@@ -37,7 +37,7 @@
         </div>
 
         <div class="w-4/12 ml-14">
-            <button type="button" class="px-5 py-3 text-base font-bold text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Ajout Multiple <i class="fa-solid fa-square-plus"></i></button>
+            <button type="button" id="ajtbtnmltpl" class="px-5 py-3 text-base font-bold text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Ajout Multiple <i class="fa-solid fa-square-plus"></i></button>
         </div>
 
 
@@ -51,6 +51,10 @@
 
         <form class="">
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                <div id="mltpldiv" class="hidden">
+                    <label class="font-semibold text-white dark:text-gray-200" for="username">Nombre De Taches</label>
+                    <input id="countmlp" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                </div>
                 <div>
                     <label class="font-semibold text-white dark:text-gray-200" for="username">Titre</label>
                     <input id="titre" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
@@ -82,7 +86,7 @@
                
             </div>
     
-            <div class="flex justify-end">
+            <div id="ajttchbtndiv" class="justify-end">
                 <button id="ajttch" class="px-8 py-4 leading-5 font-bold text-purple-700 transition-colors duration-200 transform bg-white rounded-md hover:text-white hover:bg-purple-400 focus:outline-none focus:bg-gray-600">Ajouter</button>
             </div>
         </form>
@@ -120,7 +124,6 @@
         <div class="divctnr ml-20">
             <div id="tododiv">
                 
-
             </div>
 
             <div id="doingdiv">

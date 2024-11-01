@@ -21,11 +21,18 @@ donecount.textContent = donecounts;
 
 /** Ouvrir le formulaire pour Ajouter une Tache */
 const ajtbtn = document.getElementById("ajtbtn");
+const ajtbtnmltpl = document.getElementById("ajtbtnmltpl");
 const ajtsction = document.getElementById("ajtsection");
 const clsxajt = document.getElementById("clsxajt");
 
+/** Ajout Simple */
 ajtbtn.onclick = function (){
     ouvrirform();
+};
+
+/** Ajout Multiple */
+ajtbtnmltpl.onclick = function(){
+    ouvrirmltplform();
 };
 
 ajttch.onclick = function (){
@@ -37,6 +44,17 @@ function ouvrirform(){
     ajtsction.style.display = "block";
     cardttr.textContent = "Ajouter Une Tache";
     ajttch.innerHTML = "Ajouter";
+    mltpldiv.style.display = "none";
+    ajttchbtndiv.style.display = "flex";
+
+}
+
+function ouvrirmltplform(){
+    ajtsction.style.display = "block";
+    cardttr.textContent = "Ajouter Des Tache";
+    ajttch.innerHTML = "Ajouter";
+    mltpldiv.style.display = "block";
+    ajttchbtndiv.style.display = "inline";
 
 }
 
@@ -83,82 +101,84 @@ function stockerdata(){
 
 /** Placer les taches */
 
-function placerlestaches(){
-    dataTchs.forEach(tache =>{
+function placerlestaches() {
+
+    document.getElementById('tododiv').innerHTML = '';
+    document.getElementById('doingdiv').innerHTML = '';
+    document.getElementById('donediv').innerHTML = '';
+
+    
+    todocounts = 0;
+    doingcounts = 0;
+    donecounts = 0;
+
+    
+    dataTchs.forEach(tache => {
+
+        let hoverclr = '';
+        let backgrndclr = '';
+        let bordercolor = '';
         switch(tache.statut){
             case 'todo':
-                let tdotch = '';
-                for (i=0 ; i < dataTchs.length ;i++){
-                    tdotch += `
-                    <div class="border-l-8 mt-10 max-w-sm p-6 bg-white border border-green-800 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">             
-                    <h5 id="titrecard" class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> ${dataTchs[i].titre} </h5>
-                    <p id="datecard" class="mb-3 text-xl font-bold text-gray-900 dark:text-white"> ${dataTchs[i].date}</p>
-                    <button id="mdfbtn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                        Modifier <i class="fa-solid fa-pen"></i>
-                    </button>
-            
-                    <button id="sprmbtn" onclick="supprimertche( ${i} )" class="bg-transparent hover:bg-purple-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-purple-500 hover:border-transparent rounded">
-                        Supprimer <i class="fa-solid fa-trash"></i>
-                    </button>
-                            
-                    </div>
-                    `
-                    todocounts ++;
-                    todocount.textContent = todocounts;
-                }
-                document.getElementById('tododiv').innerHTML = tdotch;
-            break;
+                hoverclr = 'hover:bg-green-500';
+                backgrndclr = 'bg-green-700';
+                bordercolor = 'border-green-700';
+                break;
 
             case 'doing':
-                let doigtch = '';
-                for (i=0 ; i < dataTchs.length ;i++){
-                    doigtch += `
-                    <div class="border-l-8 mt-10 max-w-sm p-6 bg-white border border-red-800 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">             
-                    <h5 id="titrecard" class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> ${dataTchs[i].titre} </h5>
-                    <p id="datecard" class="mb-3 text-xl font-bold text-gray-900 dark:text-white"> ${dataTchs[i].date}</p>
-                    <button id="mdfbtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        Modifier <i class="fa-solid fa-pen"></i>
-                    </button>
-            
-                    <button id="sprmbtn" onclick="supprimertche( ${i} )" class="bg-transparent hover:bg-purple-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-purple-500 hover:border-transparent rounded">
-                        Supprimer <i class="fa-solid fa-trash"></i>
-                    </button>
-                            
-                    </div>
-                    `
-                    doingcounts ++;
-                    doingcount.textContent = doingcounts;
-                }
-                document.getElementById('doingdiv').innerHTML = doigtch;
-            break;
+                hoverclr = 'hover:bg-red-500';
+                backgrndclr = 'bg-red-700';
+                bordercolor = 'border-red-700';
+                break;
 
             case 'done':
-                let dnetch = '';
-                for (i=0 ; i < dataTchs.length ;i++){
-                    dnetch += `
-                    <div class="border-l-8 mt-10 max-w-sm p-6 bg-white border border-purple-800 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">             
-                    <h5 id="titrecard" class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> ${dataTchs[i].titre} </h5>
-                    <p id="datecard" class="mb-3 text-xl font-bold text-gray-900 dark:text-white"> ${dataTchs[i].date}</p>
-                    <button id="mdfbtn" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                        Modifier <i class="fa-solid fa-pen"></i>
-                    </button>
+                hoverclr = 'hover:bg-purple-500';
+                backgrndclr = 'bg-purple-700';
+                bordercolor = 'border-purple-700';
+                break;
 
-                    <button id="sprmbtn" onclick="supprimertche( ${i} )" class="bg-transparent hover:bg-purple-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-purple-500 hover:border-transparent rounded">
-                        Supprimer <i class="fa-solid fa-trash"></i>
-                    </button>
-                            
-                    </div>
-                    `
-                    donecounts ++;
-                    donecount.textContent = donecounts;
-                }
-                document.getElementById('donediv').innerHTML = dnetch;
-            break;
+            default:
+                break;
+        }
 
-            default :
-            break;
+        let tachesHTML = `
+            <div id="divtchctnr" class="border-l-8 border-b-4 mt-10 mb-10 max-w-sm p-6 bg-white border ${bordercolor} rounded-lg shadow dark:bg-gray-800">
+                <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> ${tache.titre} </h5>
+                <p class="mb-3 text-xl font-bold text-gray-900 dark:text-white"> ${tache.date}</p>
+                <button class="${backgrndclr} ${hoverclr} text-white font-bold py-2 px-4 rounded" onclick="modifierTache(${dataTchs.indexOf(tache)})">
+                    Modifier <i class="fa-solid fa-pen"></i>
+                </button>
+                <button onclick="supprimertche(${dataTchs.indexOf(tache)})" class="bg-transparent hover:bg-purple-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-purple-500 hover:border-transparent rounded">
+                    Supprimer <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        `;
+
+        switch(tache.statut) {
+            case 'todo':
+                document.getElementById('tododiv').innerHTML += tachesHTML;
+                todocounts++;
+                break;
+
+            case 'doing':
+                document.getElementById('doingdiv').innerHTML += tachesHTML;
+                doingcounts++;
+                break;
+
+            case 'done':
+                document.getElementById('donediv').innerHTML += tachesHTML;
+                donecounts++;
+                break;
+
+            default:
+                break;
         }
     });
+
+    todocount.textContent = todocounts;
+    doingcount.textContent = doingcounts;
+    donecount.textContent = donecounts;
+
 }
 
 
