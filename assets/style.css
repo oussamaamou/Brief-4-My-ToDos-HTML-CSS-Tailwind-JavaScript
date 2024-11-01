@@ -12,7 +12,6 @@
 /* La Partie de la section des Taches*/
 .tchssction{
     display: grid;
-    grid-template-rows: 9%;
 
 }
 
