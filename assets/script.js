@@ -12,6 +12,9 @@ let donecount = document.getElementById("donecount");
 let todocounts = 0;
 let doingcounts = 0;
 let donecounts = 0;
+let rsrvr;
+let etattch = 'creation';
+let identifiant = 0;
 
 todocount.textContent = todocounts;
 doingcount.textContent = doingcounts;
@@ -51,10 +54,7 @@ function ouvrirform(){
 
 function ouvrirmltplform(){
     ajtsction.style.display = "block";
-    cardttr.textContent = "Ajouter Des Tache";
-    ajttch.innerHTML = "Ajouter";
-    mltpldiv.style.display = "block";
-    ajttchbtndiv.style.display = "inline";
+    ajttchbtndiv.style.display = "flex";
 
 }
 
@@ -62,18 +62,6 @@ function ouvrirmltplform(){
 clsxajt.onclick = function(){
     ajtsction.style.display = "none";
 }
-
-
-/** Ouvrire le formulaire pour Modifier une Tache */
-const mdfbtns = document.querySelectorAll('#mdfbtn');
-mdfbtns.forEach(mdfbtn =>{
-    mdfbtn.onclick = function(){
-        ajtsction.style.display = "block";
-        cardttr.textContent = "Modifier La Tache";
-        ajttch.innerHTML = "Modifier";
-
-    }
-});
 
 
 /** Ajouter une Tache */
@@ -92,10 +80,18 @@ function stockerdata(){
         priorite:priorite.value,
         date:date.value,
         description:description.value,
+        id: identifiant,
 
+    };
+    
+    if(etattch === 'creation'){
+        dataTchs.push(nvllTch);
+        identifiant++;
+        localStorage.setItem('taches', JSON.stringify(dataTchs));
     }
-    dataTchs.push(nvllTch);
-    localStorage.setItem('taches', JSON.stringify(dataTchs));
+    else{
+        dataTchs [rsrvr]=nvllTch;
+    }
 }
 
 
@@ -118,6 +114,25 @@ function placerlestaches() {
         let hoverclr = '';
         let backgrndclr = '';
         let bordercolor = '';
+        let tachebckgrndclr = '';
+
+        switch(tache.priorite){
+            case 'prt1':
+                tachebckgrndclr = 'bg-yellow-300';
+                break;
+
+            case 'prt2':
+                tachebckgrndclr = 'bg-blue-300';
+                break;
+
+            case 'prt3':
+                tachebckgrndclr = 'bg-pink-300';
+                break;
+
+            default:
+                break;
+        }
+
         switch(tache.statut){
             case 'todo':
                 hoverclr = 'hover:bg-green-500';
@@ -142,10 +157,10 @@ function placerlestaches() {
         }
 
         let tachesHTML = `
-            <div id="divtchctnr" class="border-l-8 border-b-4 mt-10 mb-10 max-w-sm p-6 bg-white border ${bordercolor} rounded-lg shadow dark:bg-gray-800">
+            <div id="${tache.identifiant}" class="border-l-8 border-b-4 mt-10 mb-10 max-w-sm p-6 ${tachebckgrndclr} border ${bordercolor} rounded-lg shadow dark:bg-gray-800">
                 <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> ${tache.titre} </h5>
                 <p class="mb-3 text-xl font-bold text-gray-900 dark:text-white"> ${tache.date}</p>
-                <button class="${backgrndclr} ${hoverclr} text-white font-bold py-2 px-4 rounded" onclick="modifierTache(${dataTchs.indexOf(tache)})">
+                <button onclick="ModifierlaTache(${dataTchs.indexOf(tache)})" class="${backgrndclr} ${hoverclr} text-white font-bold py-2 px-4 rounded" onclick="modifierTache(${dataTchs.indexOf(tache)})">
                     Modifier <i class="fa-solid fa-pen"></i>
                 </button>
                 <button onclick="supprimertche(${dataTchs.indexOf(tache)})" class="bg-transparent hover:bg-purple-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-purple-500 hover:border-transparent rounded">
@@ -180,6 +195,30 @@ function placerlestaches() {
     donecount.textContent = donecounts;
 
 }
+
+
+/** Ouvrire le formulaire pour Modifier une Tache */
+function ModifierlaTache(i){
+    titre.value = dataTchs[i].titre;
+    statut.value = dataTchs[i].statut;
+    priorite.value = dataTchs[i].priorite;
+    date.value = dataTchs[i].date;
+    description.value = dataTchs[i].description;
+
+    placerlestaches();
+
+    ajtsction.style.display = "block";
+    cardttr.textContent = "Modifier La Tache";
+    ajttch.innerHTML = "Modifier";
+    mltpldiv.style.display = "none";
+    ajttchbtndiv.style.display = "flex";
+    etattch = 'modification';
+    rsrvr = i;
+
+}
+
+
+
 
 
 
