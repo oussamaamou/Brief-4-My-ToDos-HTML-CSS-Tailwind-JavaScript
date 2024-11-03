@@ -13,6 +13,32 @@
     
 </head>
 <body class="">
+
+    <!-- Animation Pop-Up-->
+    <div id="anmtdiv" class="hidden popup bg-green-600 w-2/6 absolute top-4 left-2/4 py-5 px-10 rounded border-l-8 border-green-800 overflow-hidden">
+        <i class="vldcheck fa-solid fa-check absolute left-5 top-2/4 text-green-200 "></i>
+        <span id="txtmssg" class="py-0 px-5 text-lg text-green-200"> La Tache est Ajoute avec Succes</span>
+        <span class="xmarkdiv absolute px-4 py-5 right-0 top-2/4 bg-green-400 cursor-pointer hover:bg-green-300">
+            <i id="rmvmark" class="fa-solid fa-xmark text-2xl h-8 text-green-700 hover:text-green-600"></i>
+        </span>
+    </div>
+
+    <div id="anmtdivsp" class="hidden popup bg-red-600 w-2/6 absolute top-4 left-2/4 py-5 px-10 rounded border-l-8 border-red-800 overflow-hidden">
+        <i class="vldcheck fa-solid fa-check absolute left-5 top-2/4 text-red-200 "></i>
+        <span id="txtmssg" class="py-0 px-5 text-lg text-red-200"> La Tache est Supprime avec Succes</span>
+        <span class="xmarkdiv absolute px-4 py-5 right-0 top-2/4 bg-red-400 cursor-pointer hover:bg-red-300">
+            <i id="rmvmarksp" class="fa-solid fa-xmark text-2xl h-8 text-red-700 hover:text-red-600"></i>
+        </span>
+    </div>
+
+    <div id="anmtdivmd" class="hidden popup bg-yellow-600 w-2/6 absolute top-6 left-2/4 py-5 px-10 rounded border-l-8 border-yellow-800 overflow-hidden">
+        <i class="vldcheck fa-solid fa-check absolute left-5 top-2/4 text-yellow-200 "></i>
+        <span id="txtmssg" class="py-0 px-5 text-lg text-yellow-200"> La Tache est Modifie avec Succes</span>
+        <span class="xmarkdiv absolute px-4 py-5 right-0 top-2/4 bg-yellow-400 cursor-pointer hover:bg-yellow-300">
+            <i id="rmvmarkmd" class="fa-solid fa-xmark text-2xl h-8 text-yellow-700 hover:text-yellow-600"></i>
+        </span>
+    </div>
+
     <!-- Le titre de la page-->
     <h1 class="text-center mb-20 mt-20 text-4xl font-extrabold leading-none tracking-tight text-black md:text-5xl lg:text-6xl dark:text-white">My ToDos</h1>
     
@@ -87,6 +113,10 @@
     
             <div id="ajttchbtndiv" class="flex justify-end">
                 <button id="ajttch" type="submit" class="px-8 py-4 leading-5 font-bold text-purple-700 transition-colors duration-200 transform bg-white rounded-md hover:text-white hover:bg-purple-400 focus:outline-none focus:bg-gray-600">Ajouter</button>
+            </div>
+
+            <div id="mdfbtndiv" class="hidden flex justify-end">
+                <button id="mdftch" type="submit" class="px-8 py-4 leading-5 font-bold text-purple-700 transition-colors duration-200 transform bg-white rounded-md hover:text-white hover:bg-purple-400 focus:outline-none focus:bg-gray-600">Modifier</button>
             </div>
         </form>
     </section>

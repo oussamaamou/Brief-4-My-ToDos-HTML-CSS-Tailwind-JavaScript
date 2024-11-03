@@ -9,10 +9,17 @@ let titreerror = document.getElementById("titreerror");
 let dateerror = document.getElementById("dateerror");
 let dscrptionerror= document.getElementById("dscrptionerror");
 let ajttch = document.getElementById("ajttch");
+let mdftch = document.getElementById("mdftch");
 let cardttr = document.getElementById("cardttr");
 let todocount = document.getElementById("todocount");
 let doingcount = document.getElementById("doingcount");
 let donecount = document.getElementById("donecount");
+let anmtdiv = document.getElementById("anmtdiv");
+let anmtdivsp = document.getElementById("anmtdivsp");
+let anmtdivmd = document.getElementById("anmtdivmd");
+let rmvmark = document.getElementById("rmvmark");
+let rmvmarksp = document.getElementById("rmvmarksp");
+let rmvmarkmd = document.getElementById("rmvmarkmd");
 let todocounts = 0;
 let doingcounts = 0;
 let donecounts = 0;
@@ -40,6 +47,7 @@ const clsxajt = document.getElementById("clsxajt");
 /** Ajout Simple */
 ajtbtn.onclick = function (){
     ouvrirform();
+    
 };
 
 /** Ajout Multiple */
@@ -74,18 +82,32 @@ formcard.addEventListener('submit',(e) => {
         dateerror.innerHTML = "";
 
     }
+
+
+
+    if (etattch === 'modification'){
+        dataTchs[rsrvr] = {
+            titre: titre.value,
+            statut: statut.value,
+            priorite: priorite.value,
+            date: date.value,
+            description: description.value,
+            id: dataTchs[rsrvr].id
+        };
+        localStorage.setItem('taches', JSON.stringify(dataTchs));
+    } 
     else{
         stockerdata();
-        placerlestaches();
-
     }
+
+    placerlestaches(); 
+
 });
 
 function ouvrirform(){
     ajtsction.style.display = "block";
     cardttr.textContent = "Ajouter Une Tache";
     ajttch.innerHTML = "Ajouter";
-    mltpldiv.style.display = "none";
     ajttchbtndiv.style.display = "flex";
 
 }
@@ -96,10 +118,49 @@ function ouvrirmltplform(){
 
 }
 
-/** Fermer le formulaire de l'Ajouter d'une Tache */
-clsxajt.onclick = function(){
-    ajtsction.style.display = "none";
+
+/** Animation d'Ajout */
+function animationtache(){
+    anmtdiv.style.display = "block"; 
 }
+
+/** Animation de Suppression */
+function animationtache(){
+    anmtdiv.style.display = "block";
+}
+
+function animationtachesp(){
+    anmtdivsp.style.display = "block";
+}
+
+function animationtachemd(){
+    anmtdivmd.style.display = "block";
+}
+
+/** Supprimer l'Animation */
+rmvmark.onclick = function(){
+    anmtdiv.style.display = "none";
+}
+
+rmvmarksp.onclick = function(){
+    anmtdivsp.style.display = "none";
+}
+
+rmvmarkmd.onclick = function(){
+    anmtdivmd.style.display = "none";
+}
+
+/** Fermer le formulaire de l'Ajouter d'une Tache */
+clsxajt.onclick = function() {
+
+    ajtsction.style.display = "none";
+    titre.value = '';
+    date.value = '';
+    description.value = '';
+    titreerror.innerHTML = "";
+    dateerror.innerHTML = "";
+    dscrptionerror.innerHTML = "";
+};
 
 
 /** Ajouter une Tache */
@@ -236,22 +297,27 @@ function placerlestaches() {
 
 
 /** Ouvrire le formulaire pour Modifier une Tache */
+
+mdftch.onclick = function(){
+    ModifierlaTache();
+    animationtachemd();
+}
+
 function ModifierlaTache(i){
     titre.value = dataTchs[i].titre;
     statut.value = dataTchs[i].statut;
     priorite.value = dataTchs[i].priorite;
     date.value = dataTchs[i].date;
     description.value = dataTchs[i].description;
-
     ajtsction.style.display = "block";
     cardttr.textContent = "Modifier La Tache";
-    ajttch.innerHTML = "Modifier";
-    mltpldiv.style.display = "none";
-    ajttchbtndiv.style.display = "flex";
+    ajttch.style.display = "none";
+    mdfbtndiv.style.display = "flex";
     etattch = 'modification';
     rsrvr = i;
 
     placerlestaches();
+
 
 }
 
@@ -274,10 +340,11 @@ function supprimertche(i){
     dataTchs.splice(i,1);
     localStorage.taches = JSON.stringify(dataTchs);
     placerlestaches();
-    
+    animationtachesp();
 
 }
 
+animationtache();
 placerlestaches();
 
 

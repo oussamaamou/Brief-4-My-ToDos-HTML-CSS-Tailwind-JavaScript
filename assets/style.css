@@ -20,4 +20,32 @@
     grid-template-columns: repeat(3,1fr);
 }
 
-/* La Partie de la section des Commandes*/
+/* La Partie de la section des Taches*/
+
+
+/* La Partie de l'Animation*/
+.vldcheck{
+    transform: translateY(-50%);
+    font-size: 1.875rem;
+}
+
+.xmarkdiv{
+    transform: translateY(-50%);
+
+}
+
+.popup{
+    animation: animationjs 2s ease forwards;
+}
+
+
+@keyframes animationjs {
+    from {
+        transform: translateX(30%);
+    }
+    to {
+        transform: translateX(-10%);
+    }
+}
+
+/* La Partie de l'Animation*/
