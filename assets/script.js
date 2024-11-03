@@ -57,33 +57,13 @@ ajtbtnmltpl.onclick = function(){
 
 
 
-/** Validation des Inputs */
-formcard.addEventListener('submit',(e) => {
+/** Validation d'Ajout d'une Tache */
+formcard.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-    if(titre.value === '' || titre.value.length > 20){
-        e.preventDefault();
-        titreerror.innerHTML = "Veuillez entrer un titre (Max 20 Lettres)";
-        dscrptionerror.innerHTML = "";
-        dateerror.innerHTML = "";
-
-    
+    if (!InputsValidation()) {
+        return;
     }
-    else if(date.value === ''){
-        e.preventDefault();
-        dateerror.innerHTML = "Veuillez entrer une date";
-        titreerror.innerHTML = "";
-        dscrptionerror.innerHTML = "";
-        
-    }
-    else if(description.value === '' || description.value.length > 250){
-        e.preventDefault();
-        titreerror.innerHTML = "";
-        dscrptionerror.innerHTML = "Veuillez entrer une description (Max 250 Lettres)";
-        dateerror.innerHTML = "";
-
-    }
-
-
 
     if (etattch === 'modification'){
         dataTchs[rsrvr] = {
@@ -100,9 +80,33 @@ formcard.addEventListener('submit',(e) => {
         stockerdata();
     }
 
-    placerlestaches(); 
-
+    placerlestaches();
 });
+
+/** Validation des inputs */
+function InputsValidation() {
+    let isValid = true;
+
+    titreerror.innerHTML = "";
+    dateerror.innerHTML = "";
+    dscrptionerror.innerHTML = "";
+
+    if (titre.value === '' || titre.value.length > 20){
+        titreerror.innerHTML = "Veuillez entrer un titre (Max 20 Lettres)";
+        isValid = false;
+    }
+    else if (date.value === ''){
+        dateerror.innerHTML = "Veuillez entrer une date";
+        isValid = false;
+    }
+    else if (description.value === '' || description.value.length > 250){
+        dscrptionerror.innerHTML = "Veuillez entrer une description (Max 250 Lettres)";
+        isValid = false;
+    }
+
+    return isValid;
+}
+
 
 function ouvrirform(){
     ajtsction.style.display = "block";
