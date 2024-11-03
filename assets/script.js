@@ -1,9 +1,13 @@
 /** Declaration des Variables */
+let formcard = document.getElementById("formcard");
 let titre = document.getElementById("titre");
 let statut = document.getElementById("statut");
 let priorite = document.getElementById("priorite");
 let date = document.getElementById("date");
 let description = document.getElementById("description");
+let titreerror = document.getElementById("titreerror");
+let dateerror = document.getElementById("dateerror");
+let dscrptionerror= document.getElementById("dscrptionerror");
 let ajttch = document.getElementById("ajttch");
 let cardttr = document.getElementById("cardttr");
 let todocount = document.getElementById("todocount");
@@ -19,6 +23,11 @@ let identifiant = 0;
 todocount.textContent = todocounts;
 doingcount.textContent = doingcounts;
 donecount.textContent = donecounts;
+
+
+
+
+
 
 
 
@@ -38,10 +47,39 @@ ajtbtnmltpl.onclick = function(){
     ouvrirmltplform();
 };
 
-ajttch.onclick = function (){
-    stockerdata();
-    placerlestaches();
-};
+
+
+/** Validation des Inputs */
+formcard.addEventListener('submit',(e) => {
+
+    if(titre.value === '' || titre.value.length > 20){
+        e.preventDefault();
+        titreerror.innerHTML = "Veuillez entrer un titre (Max 20 Lettres)";
+        dscrptionerror.innerHTML = "";
+        dateerror.innerHTML = "";
+
+    
+    }
+    else if(date.value === ''){
+        e.preventDefault();
+        dateerror.innerHTML = "Veuillez entrer une date";
+        titreerror.innerHTML = "";
+        dscrptionerror.innerHTML = "";
+        
+    }
+    else if(description.value === '' || description.value.length > 250){
+        e.preventDefault();
+        titreerror.innerHTML = "";
+        dscrptionerror.innerHTML = "Veuillez entrer une description (Max 250 Lettres)";
+        dateerror.innerHTML = "";
+
+    }
+    else{
+        stockerdata();
+        placerlestaches();
+
+    }
+});
 
 function ouvrirform(){
     ajtsction.style.display = "block";
@@ -205,8 +243,6 @@ function ModifierlaTache(i){
     date.value = dataTchs[i].date;
     description.value = dataTchs[i].description;
 
-    placerlestaches();
-
     ajtsction.style.display = "block";
     cardttr.textContent = "Modifier La Tache";
     ajttch.innerHTML = "Modifier";
@@ -215,7 +251,10 @@ function ModifierlaTache(i){
     etattch = 'modification';
     rsrvr = i;
 
+    placerlestaches();
+
 }
+
 
 
 
