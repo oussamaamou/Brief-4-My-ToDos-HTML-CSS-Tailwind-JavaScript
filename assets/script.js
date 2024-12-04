@@ -80,6 +80,13 @@ formcard.addEventListener('submit', (e) => {
         stockerdata();
     }
 
+    titre.value = "";
+    statut.value = "";
+    priorite.value = "";
+    date.value = "";
+    description.value = "";
+    
+    ajtsction.style.display = "none";
     placerlestaches();
 });
 
@@ -123,36 +130,35 @@ function ouvrirmltplform(){
 }
 
 
-/** Animation d'Ajout */
-function animationtache(){
-    anmtdiv.style.display = "block"; 
-}
 
-/** Animation de Suppression */
-function animationtache(){
-    anmtdiv.style.display = "block";
-}
+// function animationtache(){
+//     anmtdiv.style.display = "block"; 
+// }
 
-function animationtachesp(){
-    anmtdivsp.style.display = "block";
-}
+// function animationtache(){
+//     anmtdiv.style.display = "block";
+// }
 
-function animationtachemd(){
-    anmtdivmd.style.display = "block";
-}
+// function animationtachesp(){
+//     anmtdivsp.style.display = "block";
+// }
+
+// function animationtachemd(){
+//     anmtdivmd.style.display = "block";
+// }
 
 /** Supprimer l'Animation */
-rmvmark.onclick = function(){
-    anmtdiv.style.display = "none";
-}
+// rmvmark.onclick = function(){
+//     anmtdiv.style.display = "none";
+// }
 
-rmvmarksp.onclick = function(){
-    anmtdivsp.style.display = "none";
-}
+// rmvmarksp.onclick = function(){
+//     anmtdivsp.style.display = "none";
+// }
 
-rmvmarkmd.onclick = function(){
-    anmtdivmd.style.display = "none";
-}
+// rmvmarkmd.onclick = function(){
+//     anmtdivmd.style.display = "none";
+// }
 
 /** Fermer le formulaire de l'Ajouter d'une Tache */
 clsxajt.onclick = function() {
